@@ -1,0 +1,44 @@
+buildscript {
+    ext.kotlin_version = '1.1.2-3'
+    ext {
+        springBootVersion = '1.5.3.RELEASE'
+        aetherVersion = "1.1.0"
+        mavenVersion = "3.3.9"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+apply plugin: 'org.springframework.boot'
+apply plugin: 'kotlin'
+
+dependencies {
+    compile project(':indexer-core')
+    compile('org.springframework.boot:spring-boot-starter-data-neo4j')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    compile('org.eclipse.jgit:org.eclipse.jgit:4.7.0.201704051617-r')
+    compile 'org.projectlombok:lombok:1.16.16'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile('org.apache.maven.indexer:indexer-core:5.1.2-4333789')
+    compile('org.eclipse.sisu:org.eclipse.sisu.plexus:0.3.3')
+    compile('org.sonatype.sisu:sisu-guice:3.2.6')
+    compile 'org.apache.maven.wagon:wagon-http-lightweight:2.12'
+    compile "org.eclipse.aether:aether-api:${aetherVersion}"
+    compile "org.eclipse.aether:aether-util:${aetherVersion}"
+    compile "org.eclipse.aether:aether-impl:${aetherVersion}"
+    compile "org.eclipse.aether:aether-connector-basic:${aetherVersion}"
+    compile "org.apache.maven:maven-aether-provider:${mavenVersion}"
+    compile "org.apache.maven:maven-settings-builder:${mavenVersion}"
+    compile "org.eclipse.aether:aether-transport-file:${aetherVersion}"
+    compile "org.eclipse.aether:aether-transport-http:${aetherVersion}"
+    compile "org.eclipse.aether:aether-connector-basic:${aetherVersion}"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

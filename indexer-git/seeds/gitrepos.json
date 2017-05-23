@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "name": "Spring Framework",
+      "url": "/Users/tonit/devel/spring-framework",
+      "enabled" : false
+    },
+    {
+      "name": "Apache Polygene",
+      "url": "/Users/tonit/devel/polygene-java",
+      "enabled" : false
+    },
+    {
+      "name": "BND",
+      "url": "/Users/tonit/devel/bnd",
+      "enabled" : true
+    },
+    {
+      "name": "BND Tools",
+      "url": "/Users/tonit/devel/bndtools",
+      "enabled" : true
+    }
+  ]
+}
