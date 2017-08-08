@@ -50,15 +50,20 @@ public class GitIndexer implements Indexer {
     public void index(URL path) throws Exception {
         personRepository.deleteAll();
         projectRepository.deleteAll();
+        companyRepository.deleteAll();
+        companyRepository.save(new Company("Evil Corp"));
+/**
         ObjectMapper jsonMapper = new ObjectMapper();
         GitSeedConfig configs = jsonMapper.readValue(new File("seeds/gitrepos.json"), GitSeedConfig.class);
         for (GitSourceConfig source : configs.getSources()) {
             if (source.getEnabled()) {
                 Project project = loadProject(source.getName(), source.getUrl());
                 projectRepository.save(project);
-                scanGitHistory(project);
+
+                //scanGitHistory(project);
             }
         }
+ **/
     }
 
     private Project loadProject(String name, String path) {

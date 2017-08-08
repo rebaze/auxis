@@ -30,7 +30,7 @@ public class AuxisIndexerApplication {
     @Bean
     CommandLineRunner commandLineRunner(PersonRepository personRepository) {
         return args -> {
-            indexer.index(new File("/Users/tonit/devel/spicter/evasion").toURI().toURL());
+            indexer.index(new File("/Users/tonit/devel/spicter/com.spicter.core").toURI().toURL());
         };
     }
 

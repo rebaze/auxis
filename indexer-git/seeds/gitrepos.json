@@ -13,11 +13,16 @@
     {
       "name": "BND",
       "url": "/Users/tonit/devel/bnd",
-      "enabled" : true
+      "enabled" : false
     },
     {
       "name": "BND Tools",
       "url": "/Users/tonit/devel/bndtools",
+      "enabled" : false
+    },
+    {
+      "name": "Spicter core",
+      "url": "/Users/tonit/devel/spicter/com.spicter.core",
       "enabled" : true
     }
   ]

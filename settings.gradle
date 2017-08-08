@@ -2,4 +2,4 @@ rootProject.name = "auxis"
 
 include 'indexer-core'
 include "indexer-git"
-include 'indexer-maven'
+//include 'indexer-maven'

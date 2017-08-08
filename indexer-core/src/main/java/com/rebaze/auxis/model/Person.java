@@ -34,11 +34,6 @@ public class Person {
         this.email = email;
     }
 
-    /**
-     * Neo4j doesn't REALLY have bi-directional relationships. It just means when querying
-     * to ignore the direction of the relationship.
-     * https://dzone.com/articles/modelling-data-neo4j
-     */
     @Relationship(type = "PARTICIPATES", direction = Relationship.UNDIRECTED)
     private Set<Project> projects;
 

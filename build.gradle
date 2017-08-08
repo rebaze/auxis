@@ -1,36 +1,27 @@
-apply plugin: 'java'
-apply plugin: 'kotlin'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+buildscript {
+    ext.kotlin_version = '1.1.2-4'
 }
-subprojects {
+
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.1.2-2" apply false
+}
+
+version = '0.0.1-SNAPSHOT'
+
+subprojects { subproject ->
+    apply plugin: 'java'
+    apply plugin: "maven"
+    apply plugin: 'kotlin'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+    }
+
     group "com.rebaze.auxis"
     version rootProject.version
-    apply plugin: "java"
-    apply plugin: "maven"
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-
-    repositories {
-        // add the enterprise repositories
-        mavenLocal()
-        mavenCentral()
-    }
-}
-
-buildscript {
-    ext.kotlin_version = '1.1.2-3'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 }
