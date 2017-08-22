@@ -12,13 +12,13 @@ import org.ops4j.io.Pipe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class JavaRunner
+public class ApplicationClient
 {
 
     /**
      * Logger.
      */
-    private static final Logger LOG = LoggerFactory.getLogger( JavaRunner.class );
+    private static final Logger LOG = LoggerFactory.getLogger( ApplicationClient.class );
 
     /**
      * If the execution should wait for platform shutdown.
@@ -36,7 +36,7 @@ public class JavaRunner
     /**
      * Constructor.
      */
-    public JavaRunner()
+    public ApplicationClient()
     {
         this( true );
     }
@@ -46,7 +46,7 @@ public class JavaRunner
      *
      * @param wait should wait for framework exis
      */
-    public JavaRunner( boolean wait )
+    public ApplicationClient(boolean wait )
     {
         m_wait = wait;
     }

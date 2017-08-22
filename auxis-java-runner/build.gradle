@@ -30,5 +30,5 @@ dependencies {
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
 
     // Only needed to run tests in an IDE that bundles an older version
-    testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
+    //testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
 }
