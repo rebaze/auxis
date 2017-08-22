@@ -1,0 +1,30 @@
+shipkit {
+    gitHub.repository = "rebaze/auxis"
+    gitHub.readOnlyAuthToken = "d54b116f0250163eb196c08ecfcbefca7d1ebc41"
+
+    releaseNotes.ignoreCommitsContaining = ["[ci skip]"]
+
+    team.developers = ['tonit:Toni Menzel']
+}
+
+allprojects {
+    plugins.withId("org.shipkit.bintray") {
+        bintray {
+            pkg {
+                repo = 'rebaze-oss'
+                user = 'tonit'
+                userOrg = 'rebaze'
+                name = "basic"
+                licenses = ['MIT']
+                labels = ['shipkit']
+            }
+        }
+    }
+}
+
+apply plugin: 'org.shipkit.upgrade-dependency'
+
+upgradeDependency {
+    baseBranch = "master"
+    buildFile = file("build.gradle")
+}
