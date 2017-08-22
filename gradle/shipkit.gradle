@@ -1,6 +1,6 @@
 shipkit {
     gitHub.repository = "rebaze/auxis"
-    gitHub.readOnlyAuthToken = "d54b116f0250163eb196c08ecfcbefca7d1ebc41"
+    gitHub.readOnlyAuthToken = project.hasProperty('readOnlyAuthToken') ? project.property('readOnlyAuthToken') : System.getenv('GITHUB_AUTH')
 
     releaseNotes.ignoreCommitsContaining = ["[ci skip]"]
 
