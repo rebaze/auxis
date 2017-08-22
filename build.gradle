@@ -34,8 +34,6 @@ apply from: "gradle/ide.gradle"
 ext.junitPlatformVersion = '1.0.0-RC2'
 ext.junitJupiterVersion  = '5.0.0-RC2'
 
-version = '0.0.1'
-
 subprojects { subproject ->
     apply plugin: 'java'
     apply plugin: "maven"
