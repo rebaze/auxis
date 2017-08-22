@@ -17,7 +17,7 @@ allprojects {
                 repo = 'rebaze-oss'
                 user = 'tonit'
                 userOrg = 'rebaze'
-                name = "basic"
+                name = "auxis"
                 licenses = ['MIT']
                 labels = ['shipkit']
             }
