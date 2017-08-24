@@ -32,8 +32,6 @@ allprojects {
 }
 
 subprojects { subproject ->
-    apply plugin: 'kotlin'
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -41,15 +39,17 @@ subprojects { subproject ->
         maven { url 'https://repo.gradle.org/gradle/libs-releases' }
     }
 
-    //version rootProject.version
+    apply plugin: 'java'
+    apply plugin: "maven"
+    apply plugin: 'kotlin'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
-    apply plugin: 'java'
-    apply plugin: "maven"
-
     if (releaseBuild == "true") {
+        //snapshot.dependsOn =[]
+        //install.dependsOn snapshot
+
         bintray {
             user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
             key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
