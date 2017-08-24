@@ -8,7 +8,8 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "org.shipkit:shipkit:0.9.46"
+        classpath 'com.netflix.nebula:nebula-release-plugin:6.0.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
     }
 }
 
@@ -17,16 +18,50 @@ plugins {
     id 'java'
 }
 
-allprojects {
 
+
+allprojects {
     repositories {
         jcenter()
     }
 
     group = "org.auxis"
-}
 
-apply plugin: "org.shipkit.java"
+    if (version == "unspecified") {
+        version "0.0.15-SNAPSHOT"
+    }
+
+    if (releaseBuild == "true") {
+        println "Project: " + project.name + " in Releasebuild: " + releaseBuild
+        apply plugin: 'com.jfrog.bintray'
+        apply plugin: 'nebula.nebula-release'
+        bintray {
+            user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+            key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+            configurations = ['archives']
+            pkg {
+                repo = 'rebaze-oss'
+                user = 'tonit'
+                userOrg = 'rebaze'
+                name = "auxis"
+                licenses = ['Apache-2.0']
+                labels = ['shipkit']
+            }
+        }
+        /**
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    repository(url: "$nexusDeployTarget") {
+                        authentication(userName: "$nexusUsername", password: "$nexusPassword")
+                    }
+                }
+            }
+        }
+        project.rootProject.tasks.release.dependsOn(uploadArchives)
+        **/
+    }
+}
 
 apply from: "gradle/ide.gradle"
 
