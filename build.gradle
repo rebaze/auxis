@@ -20,22 +20,36 @@ ext.junitPlatformVersion = '1.0.0-RC2'
 ext.junitJupiterVersion  = '5.0.0-RC2'
 
 allprojects {
-    repositories {
-        jcenter()
-    }
-    apply plugin: 'java'
-    apply plugin: "maven"
-
     group = "org.auxis"
-
     if (version == "unspecified") {
-       // version "0.0.15-SNAPSHOT"
+        version "999-SNAPSHOT"
     }
-
     if (releaseBuild == "true") {
         println "Project: " + project.name + " in Releasebuild: " + releaseBuild
         apply plugin: 'com.jfrog.bintray'
         apply plugin: 'nebula.nebula-release'
+    }
+}
+
+subprojects { subproject ->
+    apply plugin: 'kotlin'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+    }
+
+    //version rootProject.version
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    apply plugin: 'java'
+    apply plugin: "maven"
+
+    if (releaseBuild == "true") {
         bintray {
             user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
             key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
@@ -51,21 +65,4 @@ allprojects {
             }
         }
     }
-}
-
-
-
-subprojects { subproject ->
-    apply plugin: 'kotlin'
-
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven { url 'https://repo.gradle.org/gradle/libs-releases' }
-    }
-
-    //version rootProject.version
-
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
 }
