@@ -11,6 +11,7 @@ buildscript {
         classpath 'com.netflix.nebula:nebula-release-plugin:6.0.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.4-2"
+        classpath 'org.dm.gradle:gradle-bundle-plugin:0.10.0'
     }
 }
 
@@ -41,10 +42,26 @@ subprojects { subproject ->
 
     apply plugin: 'java'
     apply plugin: "maven"
-    apply plugin: 'kotlin'
+
+    if (new File("$project.projectDir/bnd.bnd").exists()) {
+        apply plugin: 'org.dm.bundle'
+        bundle {
+            instruction '-include', 'bnd.bnd'
+            failOnError = true
+        }
+    }
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = "sources"
+        from sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives sourcesJar
+    }
 
     if (releaseBuild == "true") {
         //snapshot.dependsOn =[]
