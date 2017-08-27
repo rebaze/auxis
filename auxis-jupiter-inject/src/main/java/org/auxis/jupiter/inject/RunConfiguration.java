@@ -1,4 +1,4 @@
-package org.auxis.jrunner;
+package org.auxis.jupiter.inject;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

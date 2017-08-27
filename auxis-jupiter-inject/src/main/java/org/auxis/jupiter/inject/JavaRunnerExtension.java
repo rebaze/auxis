@@ -1,7 +1,8 @@
-package org.auxis.jrunner;
+package org.auxis.jupiter.inject;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import org.auxis.jrunner.ApplicationClient;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
