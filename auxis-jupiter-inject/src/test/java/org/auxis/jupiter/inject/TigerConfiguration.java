@@ -1,4 +1,4 @@
-package org.auxis.jrunner;
+package org.auxis.jupiter.inject;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

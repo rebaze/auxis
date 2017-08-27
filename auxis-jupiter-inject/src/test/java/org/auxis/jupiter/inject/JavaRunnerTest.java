@@ -1,5 +1,6 @@
-package org.auxis.jrunner;
+package org.auxis.jupiter.inject;
 
+import org.auxis.jrunner.ApplicationClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
