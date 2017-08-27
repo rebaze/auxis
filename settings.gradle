@@ -1,6 +1,8 @@
 rootProject.name = "auxis"
 
 include 'auxis-java-runner'
+include 'auxis-jupiter-inject'
+
 //include 'indexer-core'
 //include "indexer-git"
 //include 'indexer-maven'
