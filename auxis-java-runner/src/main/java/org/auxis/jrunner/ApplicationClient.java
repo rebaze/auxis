@@ -2,6 +2,8 @@ package org.auxis.jrunner;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,6 +34,14 @@ public class ApplicationClient
      * Shutdown hook.
      */
     private Thread m_shutdownHook;
+
+    private PrintStream out = System.out;
+
+    private PrintStream err = System.err;
+
+    private InputStream inp = System.in;
+
+
 
     /**
      * Constructor.
@@ -125,6 +135,18 @@ public class ApplicationClient
         }
     }
 
+    public void setStandardOut(PrintStream ps ) {
+        this.out = ps;
+    }
+
+    public void setErrorOut(PrintStream ps ) {
+        this.err = ps;
+    }
+
+    public void setInputStream(InputStream inp ) {
+        this.inp = inp;
+    }
+
     private String[] createEnvironmentVars( String[] envOptions )
     {
         List<String> env = new ArrayList<String>(  );
@@ -193,9 +215,9 @@ public class ApplicationClient
     {
         LOG.debug( "Wrapping stream I/O." );
 
-        final Pipe errPipe = new Pipe( process.getErrorStream(), System.err ).start( "Error pipe" );
-        final Pipe outPipe = new Pipe( process.getInputStream(), System.out ).start( "Out pipe" );
-        final Pipe inPipe = new Pipe( process.getOutputStream(), System.in ).start( "In pipe" );
+        final Pipe errPipe = new Pipe( process.getErrorStream(), err).start( "Error pipe" );
+        final Pipe outPipe = new Pipe( process.getInputStream(), out ).start( "Out pipe" );
+        final Pipe inPipe = new Pipe( process.getOutputStream(), inp ).start( "In pipe" );
 
         return new Thread(
                 new Runnable()
